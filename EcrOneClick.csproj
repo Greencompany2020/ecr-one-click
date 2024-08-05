@@ -75,7 +75,6 @@
         <DependentUpon>MainPage.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Include=".husky\csx\commit-lint.csx" />
     </ItemGroup>
 
     <ItemGroup>
