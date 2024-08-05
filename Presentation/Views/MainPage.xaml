@@ -3,21 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EcrOneClick.Presentation.Views.MainPage">
 
-    <VerticalStackLayout>
-        <CollectionView
-            HorizontalOptions="Center"
+    <Grid RowDefinitions=".1*,.9*"
+          RowSpacing="10"
+          >
+        <Rectangle Fill="#FEFEFE"/>
+        <Label
             VerticalOptions="Center"
-            ItemsSource="{Binding Images}"
+            HorizontalOptions="Center"
+            Text="Ecr One Click" 
+            TextColor="Black"
+            FontSize="Title"
+            />
+        
+        <Rectangle Grid.Row="1"  Fill="#FEFEFE"/>
+        <StackLayout
+            Grid.Row="1"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Spacing="15"
             >
-            <CollectionView.EmptyView>
-                <Label Text="There is not data" />
-            </CollectionView.EmptyView>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Label Text="{Binding Name}" />
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
+            <Button
+                Text="Servicios"
+                FontSize="25"
+                WidthRequest="180"
+                HeightRequest="80"
+                />
+            <Button
+                Text="Configuraciones"
+                FontSize="25"
+                WidthRequest="180"
+                HeightRequest="80"
+                />
+        </StackLayout>
+    </Grid>
 
 </ContentPage>
