@@ -16,4 +16,9 @@ public partial class MainPage : ContentPage
         var viewModel = (MainViewModel)BindingContext;
         viewModel.LoadImages();
     }
+
+    private async void OnConfigurationsButtonClicked(object? sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("ConfigurationsPage");
+    }
 }
