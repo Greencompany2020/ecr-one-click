@@ -8,9 +8,6 @@
           RowSpacing="10">
         <components:RectangleBackground />
         <components:TitleView Title="Configuraciones" />
-        
-        
-        <!-- <Rectangle Grid.Row="1" Fill="{StaticResource BgPage2}" /> -->
 
         <Frame
             Grid.Row="1"
@@ -48,78 +45,24 @@
                         BackgroundColor="{StaticResource EntryBackground}"
                         />
                 </HorizontalStackLayout>
-                <Grid ColumnDefinitions="*,*,*"
-                    Margin="0,10,0,0"
-                    >
-                    <Label
-                        Text="Docker User:"
-                        TextColor="Black"
-                        VerticalOptions="Center"
-                        HorizontalOptions="Center"
-                        Margin="0,0,10,0"
-                        />
-                    <Entry
-                        Grid.Column="1"
-                        Grid.ColumnSpan="2"
-                        TextColor="Black"
-                        Placeholder="Usuario"
-                        BackgroundColor="{StaticResource EntryBackground}"
-                        />
-                </Grid>
-                <Grid ColumnDefinitions="*,*,*"
-                      Margin="0,10,0,0">
-                    <Label
-                        Text="Docker Pass:"
-                        TextColor="Black"
-                        VerticalOptions="Center"
-                        HorizontalOptions="Center"
-                        Margin="0,0,10,0"
-                    />
-                    <Entry
-                        Grid.Column="1"
-                        Grid.ColumnSpan="2"
-                        TextColor="Black"
-                        Placeholder="Password"
-                        BackgroundColor="{StaticResource EntryBackground}"
-                        IsPassword="True"
-                    />
-                </Grid>
-                <Grid ColumnDefinitions="*,*,*"
-                      Margin="0,10,0,0">
-                    <Label
-                        Text="Docker Token:"
-                        TextColor="Black"
-                        VerticalOptions="Center"
-                        HorizontalOptions="Center"
-                        Margin="0,0,10,0"
-                    />
-                    <Entry
-                        Grid.Column="1"
-                        Grid.ColumnSpan="2"
-                        TextColor="Black"
-                        Placeholder="Token"
-                        BackgroundColor="{StaticResource EntryBackground}"
-                        IsPassword="True"
-                    />
-                </Grid>
-                <Grid ColumnDefinitions="*,*,*"
-                      Margin="0,10,0,0">
-                    <Label
-                        Text="Doppler Token:"
-                        TextColor="Black"
-                        VerticalOptions="Center"
-                        HorizontalOptions="Center"
-                        Margin="0,0,10,0"
-                    />
-                    <Entry
-                        Grid.Column="1"
-                        Grid.ColumnSpan="2"
-                        TextColor="Black"
-                        Placeholder="Token"
-                        BackgroundColor="{StaticResource EntryBackground}"
-                        IsPassword="True"
-                    />
-                </Grid>
+                <components:ConfigEntry
+                    LabelText="Docker User:"
+                    EntryPlaceholder="Usuario" />
+                
+                <components:ConfigEntry
+                    LabelText="Docker Pass:"
+                    EntryPlaceholder="Password"
+                    IsSecret="True" />
+                
+                <components:ConfigEntry
+                    LabelText="Docker Token:"
+                    EntryPlaceholder="Token"
+                    IsSecret="True" />
+                
+                <components:ConfigEntry
+                    LabelText="DopplerToken:"
+                    EntryPlaceholder="Token"
+                    IsSecret="True" />
             </StackLayout>
         </Frame>
     </Grid>
