@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EcrOneClick.Presentation.Components;
+﻿namespace EcrOneClick.Presentation.Views.Components;
 
 public partial class TitleView : ContentView
 {

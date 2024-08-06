@@ -1,4 +1,4 @@
-﻿namespace EcrOneClick.Presentation.Components;
+﻿namespace EcrOneClick.Presentation.Views.Components;
 
 public partial class RectangleBackground : ContentView
 {

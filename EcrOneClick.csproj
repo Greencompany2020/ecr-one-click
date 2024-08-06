@@ -78,6 +78,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <AdditionalFiles Include="Presentation\Views\Components\RectangleBackground.xaml" />
+      <AdditionalFiles Include="Presentation\Views\Components\TitleView.xaml" />
       <AdditionalFiles Include="Presentation\Views\MainPage.xaml" />
     </ItemGroup>
 
