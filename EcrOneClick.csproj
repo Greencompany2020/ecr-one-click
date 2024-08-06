@@ -78,10 +78,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Presentation\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <AdditionalFiles Include="Presentation\Views\MainPage.xaml" />
     </ItemGroup>
 

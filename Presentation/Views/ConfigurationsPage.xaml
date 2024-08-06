@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EcrOneClick.Presentation.Views.ConfigurationsPage"
+             xmlns:local="clr-namespace:EcrOneClick.Presentation.Components">
+    <Grid RowDefinitions=".1*,.9*"
+          RowSpacing="10">
+        <local:RectangleBackground />
+        <local:TitleView Title="Configuraciones" />
+        
+        
+        <!-- <Rectangle Grid.Row="1" Fill="{StaticResource BgPage2}" /> -->
+
+        <Frame
+            Grid.Row="1"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            BackgroundColor="{StaticResource BgPage2}"
+            BorderColor="Transparent"
+            WidthRequest="500"
+            >
+            <StackLayout
+                HorizontalOptions="Fill">
+                <HorizontalStackLayout
+                    HorizontalOptions="Center">
+                    <Label
+                        Text="Tienda"
+                        TextColor="Black"
+                        VerticalOptions="Center"
+                        Margin="0,0,10,0"/>
+                    <Entry
+                        WidthRequest="130"
+                        Placeholder="Codigo de Tienda"
+                        TextColor="Black"
+                        Margin="0,0,10,0"
+                        BackgroundColor="{StaticResource EntryBackground}"
+                        />
+                    <Label
+                        Text="Caja"
+                        TextColor="Black"
+                        VerticalOptions="Center"
+                        Margin="0,0,10,0"/>
+                    <Entry
+                        WidthRequest="80"
+                        TextColor="Black"
+                        Placeholder="No. Caja"
+                        BackgroundColor="{StaticResource EntryBackground}"
+                        />
+                </HorizontalStackLayout>
+                <Grid ColumnDefinitions="*,*,*"
+                    Margin="0,10,0,0"
+                    >
+                    <Label
+                        Text="Docker User:"
+                        TextColor="Black"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Margin="0,0,10,0"
+                        />
+                    <Entry
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        TextColor="Black"
+                        Placeholder="Usuario"
+                        BackgroundColor="{StaticResource EntryBackground}"
+                        />
+                </Grid>
+                <Grid ColumnDefinitions="*,*,*"
+                      Margin="0,10,0,0">
+                    <Label
+                        Text="Docker Pass:"
+                        TextColor="Black"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Margin="0,0,10,0"
+                    />
+                    <Entry
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        TextColor="Black"
+                        Placeholder="Password"
+                        BackgroundColor="{StaticResource EntryBackground}"
+                        IsPassword="True"
+                    />
+                </Grid>
+                <Grid ColumnDefinitions="*,*,*"
+                      Margin="0,10,0,0">
+                    <Label
+                        Text="Docker Token:"
+                        TextColor="Black"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Margin="0,0,10,0"
+                    />
+                    <Entry
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        TextColor="Black"
+                        Placeholder="Token"
+                        BackgroundColor="{StaticResource EntryBackground}"
+                        IsPassword="True"
+                    />
+                </Grid>
+                <Grid ColumnDefinitions="*,*,*"
+                      Margin="0,10,0,0">
+                    <Label
+                        Text="Doppler Token:"
+                        TextColor="Black"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Margin="0,0,10,0"
+                    />
+                    <Entry
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        TextColor="Black"
+                        Placeholder="Token"
+                        BackgroundColor="{StaticResource EntryBackground}"
+                        IsPassword="True"
+                    />
+                </Grid>
+            </StackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>
