@@ -45,24 +45,89 @@
                         BackgroundColor="{StaticResource EntryBackground}"
                         />
                 </HorizontalStackLayout>
-                <components:ConfigEntry
-                    LabelText="Docker User:"
-                    EntryPlaceholder="Usuario" />
                 
-                <components:ConfigEntry
-                    LabelText="Docker Pass:"
-                    EntryPlaceholder="Password"
-                    IsSecret="True" />
+                <Grid ColumnDefinitions="*,*,*"
+                      Margin="0,10,0,0">
+                    <Label
+                        Text="Docker User:"
+                        TextColor="Black"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Margin="0,0,10,0"
+                    />
+                    <Entry
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        TextColor="Black"
+                        Placeholder="Usuario"
+                        BackgroundColor="{StaticResource EntryBackground}"
+                    />
+                </Grid>
                 
-                <components:ConfigEntry
-                    LabelText="Docker Token:"
-                    EntryPlaceholder="Token"
-                    IsSecret="True" />
+                <Grid ColumnDefinitions="*,*,*"
+                      Margin="0,10,0,0">
+                    <Label
+                        Text="Docker Pass:"
+                        TextColor="Black"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Margin="0,0,10,0"
+                    />
+                    <Entry
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        TextColor="Black"
+                        Placeholder="Password"
+                        BackgroundColor="{StaticResource EntryBackground}"
+                        IsPassword="True"
+                    />
+                </Grid>
                 
-                <components:ConfigEntry
-                    LabelText="DopplerToken:"
-                    EntryPlaceholder="Token"
-                    IsSecret="True" />
+                <Grid ColumnDefinitions="*,*,*"
+                      Margin="0,10,0,0">
+                    <Label
+                        Text="Docker Token:"
+                        TextColor="Black"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Margin="0,0,10,0"
+                    />
+                    <Entry
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        TextColor="Black"
+                        Placeholder="Token"
+                        BackgroundColor="{StaticResource EntryBackground}"
+                        IsPassword="True"
+                    />
+                </Grid>
+                
+                <Grid ColumnDefinitions="*,*,*"
+                      Margin="0,10,0,0">
+                    <Label
+                        Text="Doppler Token:"
+                        TextColor="Black"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Margin="0,0,10,0"
+                    />
+                    <Entry
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        TextColor="Black"
+                        Placeholder="Token"
+                        BackgroundColor="{StaticResource EntryBackground}"
+                        IsPassword="True"
+                    />
+                </Grid>
+                
+                <Button
+                    Text="Guardar"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Margin="0,10,0,0"
+                    FontSize="20"
+                    />
             </StackLayout>
         </Frame>
     </Grid>
