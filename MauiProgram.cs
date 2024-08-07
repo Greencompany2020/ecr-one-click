@@ -25,8 +25,8 @@ public static class MauiProgram
         builder.Logging.AddDebug();
 #endif
 
-        builder.Services.AddSingleton<MainViewModel>();
-        builder.Services.AddSingleton<IDockerService, DockerService>();
+        builder.LoadServices();
+        builder.LoadViewModels();
         
         var app = builder.Build();
         
