@@ -29,44 +29,49 @@
                 Spacing="5">
                 
                 <!-- Datos de caja -->
-                <HorizontalStackLayout
-                    HorizontalOptions="Center"
-                    >
+                <FlexLayout
+                    JustifyContent="Center"
+                >
                     <Label
                         Text="Tienda:"
                         TextColor="Black"
                         VerticalOptions="Center"
                         HorizontalOptions="Center"
-                        Margin="0,0,10,0" />
+                        Margin="0,0,5,0" />
                     <Entry
                         Placeholder="Clave de Tienda"
+                        WidthRequest="150"
                         TextColor="Black"
                         BackgroundColor="{StaticResource EntryBackground}" />
-                    
+                </FlexLayout>
+                
+                <FlexLayout
+                    JustifyContent="Center"
+                    >
                     <Label
                         Text="Caja:"
                         TextColor="Black"
                         VerticalOptions="Center"
                         HorizontalOptions="Center"
-                        Margin="15,0,10,0"/>
+                        Margin="0,0,11,0" />
                     <Entry
+                        Placeholder="Caja"
+                        WidthRequest="150"
                         TextColor="Black"
-                        Placeholder="No. Caja"
-                        BackgroundColor="{StaticResource EntryBackground}"
-                    />
-                </HorizontalStackLayout>
+                        BackgroundColor="{StaticResource EntryBackground}" />
+                </FlexLayout>
                 <!-- FIN Datos de caja -->
                 
                 <!-- USUARIO DOCKER -->
-                <HorizontalStackLayout
-                    HorizontalOptions="Center"
+                <FlexLayout
+                    JustifyContent="Center"
                     >
                     <Label
                         Text="Docker User:"
                         TextColor="Black"
                         VerticalOptions="Center"
                         HorizontalOptions="Center"
-                        Margin="0,0,10,0"
+                        Margin="0,0,9,0"
                         />
                     <Entry
                         TextColor="Black"
@@ -75,12 +80,12 @@
                         BackgroundColor="{StaticResource EntryBackground}"
                         Text="{Binding Config.DockerUser}"
                         x:Name="DockerUserEntry"/>
-                </HorizontalStackLayout>
+                </FlexLayout>
                 <!-- FIN USUARIO DOCKER -->
             
                 <!-- DOCKER PASSWORD -->
-                <HorizontalStackLayout
-                    HorizontalOptions="Center"
+                <FlexLayout
+                    JustifyContent="Center"
                     >
                     <Label
                         Text="Docker Pass:"
@@ -92,7 +97,7 @@
                     <HorizontalStackLayout
                         WidthRequest="200"
                         BackgroundColor="{StaticResource EntryBackground}"
-                        >
+                    >
                         <Entry
                             TextColor="Black"
                             WidthRequest="160"
@@ -100,7 +105,7 @@
                             BackgroundColor="{StaticResource EntryBackground}"
                             Text="{Binding Config.DockerPass}"
                             IsPassword="{Binding HidePassword}"
-                            />
+                        />
                         <ImageButton
                             Source="closed_eye.png"
                             HorizontalOptions="Start"
@@ -109,19 +114,20 @@
                             Clicked="OnDockerPasswordHideButtonClicked"
                         />
                     </HorizontalStackLayout>
-                </HorizontalStackLayout>
+                </FlexLayout>
+                
                 <!-- FIN DOCKER PASSWORD -->
                 
                 <!-- DOCKER TOKEN -->
-                <HorizontalStackLayout
-                    HorizontalOptions="Center"
+                <FlexLayout
+                    JustifyContent="Center"
                     >
                     <Label
                         Text="Docker Token:"
                         TextColor="Black"
                         VerticalOptions="Center"
                         HorizontalOptions="Center"
-                        Margin="0,0,10,0"
+                        Margin="0,0,5,0"
                     />
                     <HorizontalStackLayout
                         WidthRequest="200"
@@ -142,19 +148,18 @@
                             Clicked="OnDockerTokenHidButtonClicked"
                         />
                     </HorizontalStackLayout>
-                </HorizontalStackLayout>
+                </FlexLayout>
                 <!-- FIN DOCKER TOKEN -->
             
                 <!-- DOPPLER TOKEN -->
-                <HorizontalStackLayout
-                    HorizontalOptions="Center"
+                <FlexLayout
+                    JustifyContent="Center"
                     >
                     <Label
                         Text="Doppler Token:"
                         TextColor="Black"
                         VerticalOptions="Center"
-                        HorizontalOptions="Center"
-                        Margin="0,0,10,0"
+                        Margin="0,0,1,0"
                     />
                     <HorizontalStackLayout
                         WidthRequest="200"
@@ -175,7 +180,7 @@
                             Clicked="OnDopplerTokenHideButtonClicked"
                         />
                     </HorizontalStackLayout>
-                </HorizontalStackLayout>
+                </FlexLayout>
                 <!-- FIN DOPPLER TOKEN -->
             
                 <Button
