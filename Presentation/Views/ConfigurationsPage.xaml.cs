@@ -33,7 +33,7 @@ public partial class ConfigurationsPage : ContentPage
         
         viewModel.ToggleDockerToken();
         
-        DockerPasswordHideButton.Source = viewModel.HideDockerToken? "closed_eye.png" : "open_eye.png";
+        DockerTokenHideButton.Source = viewModel.HideDockerToken? "closed_eye.png" : "open_eye.png";
     }
 
     private void OnDopplerTokenHideButtonClicked(object? sender, EventArgs e)

@@ -148,7 +148,7 @@
                             Source="closed_eye.png"
                             HorizontalOptions="Start"
                             Scale="0.7"
-                            x:Name="DockerTokenHidButton"
+                            x:Name="DockerTokenHideButton"
                             Clicked="OnDockerTokenHidButtonClicked"
                         />
                     </HorizontalStackLayout>
