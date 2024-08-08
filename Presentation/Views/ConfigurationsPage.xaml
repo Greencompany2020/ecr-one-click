@@ -4,8 +4,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EcrOneClick.Presentation.Views.ConfigurationsPage"
              xmlns:components="clr-namespace:EcrOneClick.Presentation.Views.Components"
-             xmlns:viewmodel="clr-namespace:EcrOneClick.Presentation.ViewModels"
-             x:DataType="viewmodel:ConfigurationsViewModel">
+             xmlns:viewmodel="clr-namespace:EcrOneClick.Presentation.ViewModels">
+    
+    <ContentPage.BindingContext>
+        <viewmodel:ConfigurationsViewModel />
+    </ContentPage.BindingContext>
     
     <Grid RowDefinitions=".1*,.9*"
           RowSpacing="10">
@@ -18,57 +21,67 @@
             HorizontalOptions="Center"
             BackgroundColor="{StaticResource BgPage2}"
             BorderColor="Transparent"
-            WidthRequest="500"
+            WidthRequest="450"
             >
+
             <StackLayout
-                HorizontalOptions="Fill">
+                HorizontalOptions="Fill"
+                Spacing="5">
+                
+                <!-- Datos de caja -->
                 <HorizontalStackLayout
-                    HorizontalOptions="Center">
+                    HorizontalOptions="Center"
+                    >
                     <Label
-                        Text="Tienda"
+                        Text="Tienda:"
                         TextColor="Black"
                         VerticalOptions="Center"
-                        Margin="0,0,10,0"/>
+                        HorizontalOptions="Center"
+                        Margin="0,0,10,0" />
                     <Entry
-                        WidthRequest="130"
-                        Placeholder="Codigo de Tienda"
+                        Placeholder="Clave de Tienda"
                         TextColor="Black"
-                        Margin="0,0,10,0"
-                        BackgroundColor="{StaticResource EntryBackground}"
-                        />
+                        BackgroundColor="{StaticResource EntryBackground}" />
+                    
                     <Label
-                        Text="Caja"
+                        Text="Caja:"
                         TextColor="Black"
                         VerticalOptions="Center"
-                        Margin="0,0,10,0"/>
+                        HorizontalOptions="Center"
+                        Margin="15,0,10,0"/>
                     <Entry
-                        WidthRequest="80"
                         TextColor="Black"
                         Placeholder="No. Caja"
                         BackgroundColor="{StaticResource EntryBackground}"
-                        />
+                    />
                 </HorizontalStackLayout>
+                <!-- FIN Datos de caja -->
                 
-                <Grid ColumnDefinitions="*,*,*"
-                      Margin="0,10,0,0">
+                <!-- USUARIO DOCKER -->
+                <HorizontalStackLayout
+                    HorizontalOptions="Center"
+                    >
                     <Label
                         Text="Docker User:"
                         TextColor="Black"
                         VerticalOptions="Center"
                         HorizontalOptions="Center"
                         Margin="0,0,10,0"
-                    />
+                        />
                     <Entry
-                        Grid.Column="1"
-                        Grid.ColumnSpan="2"
                         TextColor="Black"
+                        WidthRequest="200"
                         Placeholder="Usuario"
                         BackgroundColor="{StaticResource EntryBackground}"
-                    />
-                </Grid>
-                
-                <Grid ColumnDefinitions="*,*,*"
-                      Margin="0,10,0,0">
+                        Text="{Binding Config.DockerUser}"
+                        x:Name="DockerUserEntry"/>
+                </HorizontalStackLayout>
+                <!-- FIN USUARIO DOCKER -->
+            
+                <!-- DOCKER PASSWORD -->
+                <HorizontalStackLayout
+                    HorizontalOptions="Center"
+                    >
                     <Label
                         Text="Docker Pass:"
                         TextColor="Black"
@@ -76,18 +89,33 @@
                         HorizontalOptions="Center"
                         Margin="0,0,10,0"
                     />
-                    <Entry
-                        Grid.Column="1"
-                        Grid.ColumnSpan="2"
-                        TextColor="Black"
-                        Placeholder="Password"
+                    <HorizontalStackLayout
+                        WidthRequest="200"
                         BackgroundColor="{StaticResource EntryBackground}"
-                        IsPassword="True"
-                    />
-                </Grid>
+                        >
+                        <Entry
+                            TextColor="Black"
+                            WidthRequest="160"
+                            Placeholder="Password"
+                            BackgroundColor="{StaticResource EntryBackground}"
+                            Text="{Binding Config.DockerPass}"
+                            IsPassword="{Binding HidePassword}"
+                            />
+                        <ImageButton
+                            Source="closed_eye.png"
+                            HorizontalOptions="Start"
+                            Scale="0.7"
+                            x:Name="DockerPasswordHideButton"
+                            Clicked="OnDockerPasswordHideButtonClicked"
+                        />
+                    </HorizontalStackLayout>
+                </HorizontalStackLayout>
+                <!-- FIN DOCKER PASSWORD -->
                 
-                <Grid ColumnDefinitions="*,*,*"
-                      Margin="0,10,0,0">
+                <!-- DOCKER TOKEN -->
+                <HorizontalStackLayout
+                    HorizontalOptions="Center"
+                    >
                     <Label
                         Text="Docker Token:"
                         TextColor="Black"
@@ -95,18 +123,32 @@
                         HorizontalOptions="Center"
                         Margin="0,0,10,0"
                     />
-                    <Entry
-                        Grid.Column="1"
-                        Grid.ColumnSpan="2"
-                        TextColor="Black"
-                        Placeholder="Token"
+                    <HorizontalStackLayout
+                        WidthRequest="200"
                         BackgroundColor="{StaticResource EntryBackground}"
-                        IsPassword="True"
-                    />
-                </Grid>
-                
-                <Grid ColumnDefinitions="*,*,*"
-                      Margin="0,10,0,0">
+                        >
+                        <Entry
+                            TextColor="Black"
+                            WidthRequest="160"
+                            Placeholder="Token"
+                            BackgroundColor="{StaticResource EntryBackground}"
+                            Text="{Binding Config.DockerToken}"
+                            IsPassword="{Binding HideDockerToken}"/>
+                        <ImageButton
+                            Source="closed_eye.png"
+                            HorizontalOptions="Start"
+                            Scale="0.7"
+                            x:Name="DockerTokenHidButton"
+                            Clicked="OnDockerTokenHidButtonClicked"
+                        />
+                    </HorizontalStackLayout>
+                </HorizontalStackLayout>
+                <!-- FIN DOCKER TOKEN -->
+            
+                <!-- DOPPLER TOKEN -->
+                <HorizontalStackLayout
+                    HorizontalOptions="Center"
+                    >
                     <Label
                         Text="Doppler Token:"
                         TextColor="Black"
@@ -114,16 +156,28 @@
                         HorizontalOptions="Center"
                         Margin="0,0,10,0"
                     />
-                    <Entry
-                        Grid.Column="1"
-                        Grid.ColumnSpan="2"
-                        TextColor="Black"
-                        Placeholder="Token"
+                    <HorizontalStackLayout
+                        WidthRequest="200"
                         BackgroundColor="{StaticResource EntryBackground}"
-                        IsPassword="True"
-                    />
-                </Grid>
-                
+                        >
+                        <Entry
+                            TextColor="Black"
+                            WidthRequest="160"
+                            Placeholder="Token"
+                            BackgroundColor="{StaticResource EntryBackground}"
+                            Text="{Binding Config.DopplerToken}"
+                            IsPassword="{Binding HideDopplerToken}" />
+                        <ImageButton
+                            Source="closed_eye.png"
+                            HorizontalOptions="Start"
+                            Scale="0.7"
+                            x:Name="DopplerTokenHideButton"
+                            Clicked="OnDopplerTokenHideButtonClicked"
+                        />
+                    </HorizontalStackLayout>
+                </HorizontalStackLayout>
+                <!-- FIN DOPPLER TOKEN -->
+            
                 <Button
                     Text="Guardar"
                     HorizontalOptions="Center"
@@ -131,7 +185,7 @@
                     Margin="0,10,0,0"
                     FontSize="20"
                     />
-            </StackLayout>
+        </StackLayout>
         </Frame>
     </Grid>
 </ContentPage>
