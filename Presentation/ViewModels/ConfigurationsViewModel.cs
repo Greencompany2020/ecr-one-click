@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using EcrOneClick.Presentation.Abstract;
 using EcrOneClick.Presentation.Models;
+using EcrOneClick.UseCases.Request;
 
 namespace EcrOneClick.Presentation.ViewModels;
 
@@ -20,10 +21,10 @@ public partial class ConfigurationsViewModel : ObservableObject, IBaseViewModel
     
     public ConfigurationsViewModel()
     {
-        _config.DockerUser = "Dti";
-        _config.DockerPass = "Sist3mas";
-        _config.DockerToken = "Accesstoken";
-        _config.DopplerToken = "Token";
+        _config.DockerUser = "";
+        _config.DockerPass = "";
+        _config.DockerToken = "";
+        _config.DopplerToken = "";
     }
 
     public void TogglePassword()
@@ -39,5 +40,13 @@ public partial class ConfigurationsViewModel : ObservableObject, IBaseViewModel
     public void ToggleDopplerToken()
     {
         HideDopplerToken = !HideDopplerToken;
+    }
+
+    public void SaveConfigValues(SaveConfigurationValuesRequest request)
+    {
+        Config.DockerUser = request.DockerUser;
+        Config.DockerPass = request.DockerPass;
+        Config.DockerToken = request.DockerToken;
+        Config.DopplerToken = request.DopplerToken;
     }
 }

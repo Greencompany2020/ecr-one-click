@@ -42,7 +42,8 @@
                         Placeholder="Clave de Tienda"
                         WidthRequest="150"
                         TextColor="Black"
-                        BackgroundColor="{StaticResource EntryBackground}" />
+                        BackgroundColor="{StaticResource EntryBackground}"
+                        x:Name="StoreEntry"/>
                 </FlexLayout>
                 
                 <FlexLayout
@@ -58,7 +59,8 @@
                         Placeholder="Caja"
                         WidthRequest="150"
                         TextColor="Black"
-                        BackgroundColor="{StaticResource EntryBackground}" />
+                        BackgroundColor="{StaticResource EntryBackground}"
+                        x:Name="CashRegisterEntry"/>
                 </FlexLayout>
                 <!-- FIN Datos de caja -->
                 
@@ -105,6 +107,7 @@
                             BackgroundColor="{StaticResource EntryBackground}"
                             Text="{Binding Config.DockerPass}"
                             IsPassword="{Binding HidePassword}"
+                            x:Name="DockerPasswordEntry"
                         />
                         <ImageButton
                             Source="closed_eye.png"
@@ -139,7 +142,8 @@
                             Placeholder="Token"
                             BackgroundColor="{StaticResource EntryBackground}"
                             Text="{Binding Config.DockerToken}"
-                            IsPassword="{Binding HideDockerToken}"/>
+                            IsPassword="{Binding HideDockerToken}"
+                            x:Name="DockerTokenEntry"/>
                         <ImageButton
                             Source="closed_eye.png"
                             HorizontalOptions="Start"
@@ -171,7 +175,8 @@
                             Placeholder="Token"
                             BackgroundColor="{StaticResource EntryBackground}"
                             Text="{Binding Config.DopplerToken}"
-                            IsPassword="{Binding HideDopplerToken}" />
+                            IsPassword="{Binding HideDopplerToken}"
+                            x:Name="DopplerTokenEntry"/>
                         <ImageButton
                             Source="closed_eye.png"
                             HorizontalOptions="Start"
@@ -189,6 +194,7 @@
                     VerticalOptions="Center"
                     Margin="0,10,0,0"
                     FontSize="20"
+                    Clicked="OnSaveButtonClicked"
                     />
         </StackLayout>
         </Frame>
