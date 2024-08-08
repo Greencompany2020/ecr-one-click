@@ -1,7 +1,5 @@
-﻿using EcrOneClick.DI;
-using EcrOneClick.Infrastructure;
-using EcrOneClick.Infrastructure.Abstract;
-using EcrOneClick.Presentation.ViewModels;
+﻿using CommunityToolkit.Maui;
+using EcrOneClick.DI;
 using Microsoft.Extensions.Logging;
 
 namespace EcrOneClick;
@@ -13,6 +11,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

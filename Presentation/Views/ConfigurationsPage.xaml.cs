@@ -1,6 +1,7 @@
 ﻿using EcrOneClick.DI;
 using EcrOneClick.Presentation.ViewModels;
 using EcrOneClick.UseCases.Request;
+using CommunityToolkit.Maui.Extensions;
 
 namespace EcrOneClick.Presentation.Views;
 
@@ -45,8 +46,11 @@ public partial class ConfigurationsPage : ContentPage
         DopplerTokenHideButton.Source = viewModel.HideDopplerToken ? "closed_eye.png" : "open_eye.png";
     }
 
-    private void OnSaveButtonClicked(object? sender, EventArgs e)
+    private async void OnSaveButtonClicked(object? sender, EventArgs e)
     {
+        await SaveBtn.BackgroundColorTo(Color.FromRgba("#349CDB"));
+        await SaveBtn.BackgroundColorTo(Color.FromRgba("#243C78"));
+        
         var store = StoreEntry.Text;
         var cashRegister = CashRegisterEntry.Text;
         var dockerUser = DockerUserEntry.Text;
@@ -66,5 +70,7 @@ public partial class ConfigurationsPage : ContentPage
         var viewModel = GetViewModel();
         
         viewModel.SaveConfigValues(request);
+
+        await DisplayAlert("Configuraciones", "Se han guardado los valores", "OK");
     }
 }
