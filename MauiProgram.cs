@@ -26,6 +26,7 @@ public static class MauiProgram
 
         builder.LoadServices();
         builder.LoadViewModels();
+        builder.LoadValidators();
         
         var app = builder.Build();
         

@@ -43,6 +43,7 @@
                     <Entry
                         Placeholder="Clave de Tienda"
                         WidthRequest="150"
+                        Text="{Binding Config.Store}"
                         TextColor="Black"
                         BackgroundColor="{StaticResource EntryBackground}"
                         x:Name="StoreEntry"/>
@@ -64,6 +65,7 @@
                     <Entry
                         Placeholder="Caja"
                         WidthRequest="150"
+                        Text="{Binding Config.CashRegister}"
                         TextColor="Black"
                         BackgroundColor="{StaticResource EntryBackground}"
                         x:Name="CashRegisterEntry"/>

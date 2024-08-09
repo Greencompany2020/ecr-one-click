@@ -1,6 +1,9 @@
 using EcrOneClick.Infrastructure;
 using EcrOneClick.Infrastructure.Abstract;
 using EcrOneClick.Presentation.Abstract;
+using EcrOneClick.Presentation.ViewModels.Validators;
+using EcrOneClick.UseCases.Request;
+using FluentValidation;
 
 namespace EcrOneClick.DI;
 
@@ -26,6 +29,14 @@ public static class ServiceHelper
     public static MauiAppBuilder LoadServices(this MauiAppBuilder builder)
     {
         builder.Services.AddSingleton<IDockerService, DockerService>();
+
+        return builder;
+    }
+
+    public static MauiAppBuilder LoadValidators(this MauiAppBuilder builder)
+    {
+        builder.Services
+            .AddSingleton<IValidator<SaveConfigurationValuesRequest>, SaveConfigurationValuesRequestValidator>();
 
         return builder;
     }

@@ -2,15 +2,19 @@
 using EcrOneClick.Presentation.ViewModels;
 using EcrOneClick.UseCases.Request;
 using CommunityToolkit.Maui.Extensions;
+using FluentValidation;
 
 namespace EcrOneClick.Presentation.Views;
 
 public partial class ConfigurationsPage : ContentPage
 {
+    private readonly IValidator<SaveConfigurationValuesRequest> _validator;
+    
     public ConfigurationsPage()
     {
         InitializeComponent();
         BindingContext = ServiceHelper.GetService<ConfigurationsViewModel>();
+        _validator = ServiceHelper.GetService<IValidator<SaveConfigurationValuesRequest>>() ?? throw new InvalidOperationException();
     }
 
     private ConfigurationsViewModel GetViewModel()
@@ -66,11 +70,20 @@ public partial class ConfigurationsPage : ContentPage
             dockerToken,
             dopplerToken
         );
-        
-        var viewModel = GetViewModel();
-        
-        viewModel.SaveConfigValues(request);
 
-        await DisplayAlert("Configuraciones", "Se han guardado los valores", "OK");
+        var result = await _validator.ValidateAsync(request);
+
+        if (!result.IsValid)
+        {
+            await DisplayAlert("Error", result.ToString(), "OK");
+        }
+        else
+        {
+            var viewModel = GetViewModel();
+        
+            viewModel.SaveConfigValues(request);
+
+            await DisplayAlert("Configuraciones", "Se han guardado los valores", "OK");            
+        }
     }
 }
