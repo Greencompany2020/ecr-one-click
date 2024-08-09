@@ -11,6 +11,7 @@
 /// <param name="DockerToken"></param>
 /// <param name="DopplerToken"></param>
 public record SaveConfigurationValuesRequest(
+    int Id,
     string Store,
     string CashRegister,
     string DockerUser,

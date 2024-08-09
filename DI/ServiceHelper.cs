@@ -4,6 +4,8 @@ using EcrOneClick.Infrastructure.Abstract;
 using EcrOneClick.Infrastructure.Database.Repositories;
 using EcrOneClick.Presentation.Abstract;
 using EcrOneClick.Presentation.ViewModels.Validators;
+using EcrOneClick.UseCases;
+using EcrOneClick.UseCases.Abstract;
 using EcrOneClick.UseCases.Request;
 using FluentValidation;
 
@@ -46,6 +48,14 @@ public static class ServiceHelper
     public static MauiAppBuilder LoadRepositories(this MauiAppBuilder builder)
     {
         builder.Services.AddSingleton<IConfigurationsRepository, SqliteConfigurationsRepository>();
+
+        return builder;
+    }
+
+    public static MauiAppBuilder LoadUseCases(this MauiAppBuilder builder)
+    {
+        builder.Services.AddSingleton<ISaveConfigurationUseCase, SaveConfigurationsUseCase>();
+        builder.Services.AddSingleton<IGetConfigurationsUseCase, GetConfigurationsUseCase>();
 
         return builder;
     }

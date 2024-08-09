@@ -34,6 +34,7 @@ public static class MauiProgram
             new SQLiteConnection(SqliteConfiguration.DatabasePath, SqliteConfiguration.Flags));
 
         builder.LoadRepositories();
+        builder.LoadRepositories();
         
         var app = builder.Build();
         

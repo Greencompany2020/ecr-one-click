@@ -87,8 +87,4 @@
       <AdditionalFiles Include="Presentation\Views\MainPage.xaml" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Presentation\Models\" />
-    </ItemGroup>
-
 </Project>

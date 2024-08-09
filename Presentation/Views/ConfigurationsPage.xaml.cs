@@ -63,14 +63,7 @@ public partial class ConfigurationsPage : ContentPage
         var dockerToken = DockerTokenEntry.Text;
         var dopplerToken = DopplerTokenEntry.Text;
         
-        var request = new SaveConfigurationValuesRequest(
-            store,
-            cashRegister,
-            dockerUser,
-            dockerPass,
-            dockerToken,
-            dopplerToken
-        );
+        SaveConfigurationValuesRequest request = new (0, store, cashRegister, dockerUser, dockerPass, dockerToken, dopplerToken);
 
         var result = await _validator.ValidateAsync(request);
 
