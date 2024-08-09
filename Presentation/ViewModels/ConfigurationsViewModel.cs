@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using EcrOneClick.Domain.Entities;
 using EcrOneClick.Presentation.Abstract;
-using EcrOneClick.Presentation.Models;
 using EcrOneClick.UseCases.Request;
 
 namespace EcrOneClick.Presentation.ViewModels;
@@ -44,6 +44,8 @@ public partial class ConfigurationsViewModel : ObservableObject, IBaseViewModel
 
     public void SaveConfigValues(SaveConfigurationValuesRequest request)
     {
+        Config.Store = request.Store;
+        Config.CashRegister = request.CashRegister;
         Config.DockerUser = request.DockerUser;
         Config.DockerPass = request.DockerPass;
         Config.DockerToken = request.DockerToken;
