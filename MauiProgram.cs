@@ -35,6 +35,7 @@ public static class MauiProgram
 
         builder.LoadRepositories();
         builder.LoadRepositories();
+        builder.LoadUseCases();
         
         var app = builder.Build();
         

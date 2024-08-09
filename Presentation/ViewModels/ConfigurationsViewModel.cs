@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using EcrOneClick.Domain.Entities;
 using EcrOneClick.Presentation.Abstract;
+using EcrOneClick.UseCases.Abstract;
 using EcrOneClick.UseCases.Request;
 
 namespace EcrOneClick.Presentation.ViewModels;
@@ -18,13 +19,19 @@ public partial class ConfigurationsViewModel : ObservableObject, IBaseViewModel
 
     [ObservableProperty]
     private bool _hideDopplerToken = true;
+
+    private readonly ISaveConfigurationUseCase _saveConfiguration;
+
+    private readonly IGetConfigurationsUseCase _getConfigurations;
     
-    public ConfigurationsViewModel()
+    public ConfigurationsViewModel(
+        ISaveConfigurationUseCase saveConfiguration,
+        IGetConfigurationsUseCase getConfigurations
+        )
     {
-        _config.DockerUser = "";
-        _config.DockerPass = "";
-        _config.DockerToken = "";
-        _config.DopplerToken = "";
+        _saveConfiguration = saveConfiguration;
+        _getConfigurations = getConfigurations;
+        
     }
 
     public void TogglePassword()
@@ -50,5 +57,20 @@ public partial class ConfigurationsViewModel : ObservableObject, IBaseViewModel
         Config.DockerPass = request.DockerPass;
         Config.DockerToken = request.DockerToken;
         Config.DopplerToken = request.DopplerToken;
+        
+        _saveConfiguration.Execute(request);
+    }
+
+    public void LoadConfigurations()
+    {
+        var configurations = _getConfigurations.Execute();
+        
+        Config.Store = configurations.Store;
+        Config.CashRegister = configurations.CashRegister;
+        Config.DockerUser = configurations.DockerUser;
+        Config.DockerPass = configurations.DockerPass;
+        Config.DockerToken = configurations.DockerToken;
+        Config.DopplerToken = configurations.DopplerToken;
+        
     }
 }

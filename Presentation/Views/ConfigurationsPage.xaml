@@ -6,9 +6,9 @@
              xmlns:components="clr-namespace:EcrOneClick.Presentation.Views.Components"
              xmlns:viewmodel="clr-namespace:EcrOneClick.Presentation.ViewModels">
     
-    <ContentPage.BindingContext>
-        <viewmodel:ConfigurationsViewModel />
-    </ContentPage.BindingContext>
+    <!-- <ContentPage.BindingContext> -->
+    <!--     <viewmodel:ConfigurationsViewModel /> -->
+    <!-- </ContentPage.BindingContext> -->
     
     <Grid RowDefinitions=".1*,.9*"
           RowSpacing="10">
