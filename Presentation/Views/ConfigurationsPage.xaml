@@ -50,6 +50,12 @@
                 </FlexLayout>
                 <!-- FIN TIENDA -->
                 
+                <Label
+                    x:Name="StoreErrorText"
+                    HorizontalOptions="Center"
+                    IsVisible="False"
+                    TextColor="Red" />
+                
                 <!-- CAJA -->
                 <FlexLayout
                     JustifyContent="Center"
@@ -71,6 +77,12 @@
                         x:Name="CashRegisterEntry"/>
                 </FlexLayout>
                 <!-- FIN CAJA -->
+                
+                <Label
+                    x:Name="CashRegisterErrorText"
+                    HorizontalOptions="Center"
+                    IsVisible="False"
+                    TextColor="Red" />
                 
                 <!-- USUARIO DOCKER -->
                 <FlexLayout
@@ -95,6 +107,12 @@
                 </FlexLayout>
                 <!-- FIN USUARIO DOCKER -->
             
+                <Label
+                    x:Name="DockerUserErrorText"
+                    HorizontalOptions="Center"
+                    IsVisible="False"
+                    TextColor="Red" />
+                
                 <!-- DOCKER PASSWORD -->
                 <FlexLayout
                     JustifyContent="Center"
@@ -130,8 +148,13 @@
                         />
                     </HorizontalStackLayout>
                 </FlexLayout>
-                
                 <!-- FIN DOCKER PASSWORD -->
+                
+                <Label
+                    x:Name="DockerPassErrorText"
+                    HorizontalOptions="Center"
+                    IsVisible="False"
+                    TextColor="Red" />
                 
                 <!-- DOCKER TOKEN -->
                 <FlexLayout
@@ -169,6 +192,12 @@
                 </FlexLayout>
                 <!-- FIN DOCKER TOKEN -->
             
+                <Label
+                    x:Name="DockerTokenErrorText"
+                    HorizontalOptions="Center"
+                    IsVisible="False"
+                    TextColor="Red" />
+                
                 <!-- DOPPLER TOKEN -->
                 <FlexLayout
                     JustifyContent="Center"
@@ -204,6 +233,12 @@
                 </FlexLayout>
                 <!-- FIN DOPPLER TOKEN -->
             
+                <Label
+                    x:Name="DopplerTokenErrorText"
+                    HorizontalOptions="Center"
+                    IsVisible="False"
+                    TextColor="Red" />
+                
                 <Button
                     Text="Guardar"
                     FontFamily="JaldiRegular"

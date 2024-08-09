@@ -27,6 +27,10 @@ public class SaveConfigurationValuesRequestValidator : AbstractValidator<SaveCon
             .NotEmpty()
             .WithMessage("{PropertyName} no puede estar vacio");
 
+        RuleFor(config => config.DockerToken)
+            .NotEmpty()
+            .WithMessage("{PropertyName} no puede estar vacio");
+        
         RuleFor(config => config.DopplerToken)
             .NotEmpty()
             .WithMessage("{PropertyName} no puede estar vacio");
