@@ -1,5 +1,7 @@
+using EcrOneClick.Domain.Repositories;
 using EcrOneClick.Infrastructure;
 using EcrOneClick.Infrastructure.Abstract;
+using EcrOneClick.Infrastructure.Database.Repositories;
 using EcrOneClick.Presentation.Abstract;
 using EcrOneClick.Presentation.ViewModels.Validators;
 using EcrOneClick.UseCases.Request;
@@ -37,6 +39,13 @@ public static class ServiceHelper
     {
         builder.Services
             .AddSingleton<IValidator<SaveConfigurationValuesRequest>, SaveConfigurationValuesRequestValidator>();
+
+        return builder;
+    }
+
+    public static MauiAppBuilder LoadRepositories(this MauiAppBuilder builder)
+    {
+        builder.Services.AddSingleton<IConfigurationsRepository, SqliteConfigurationsRepository>();
 
         return builder;
     }

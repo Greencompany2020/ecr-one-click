@@ -33,6 +33,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<SQLiteConnection>((provider) =>
             new SQLiteConnection(SqliteConfiguration.DatabasePath, SqliteConfiguration.Flags));
 
+        builder.LoadRepositories();
+        
         var app = builder.Build();
         
         ServiceHelper.Initialize(app.Services);
