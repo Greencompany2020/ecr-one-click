@@ -3,12 +3,96 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:components="clr-namespace:EcrOneClick.Presentation.Views.Components"
-             x:Class="EcrOneClick.Presentation.Views.ServicesPage">
+             x:Class="EcrOneClick.Presentation.Views.ServicesPage"
+             xmlns:viewmodel="clr-namespace:EcrOneClick.Presentation.ViewModels"
+             xmlns:converters="clr-namespace:EcrOneClick.Presentation.Views.Converters">
+    
+    <ContentPage.Resources>
+        <converters:StatusToTextColorConverter x:Key="StatusToTextColorConverter" />
+    </ContentPage.Resources>
+    
+    <ContentPage.BindingContext>
+        <viewmodel:ServicesViewModel />    
+    </ContentPage.BindingContext>
+    
     <Grid
         RowDefinitions=".1*,.9*"
         RowSpacing="10"
         >
         <components:RectangleBackground />
         <components:TitleView Title="Servicios" />
+        
+        <Frame
+            Grid.Row="1"
+            VerticalOptions="Center"
+            Background="{StaticResource BgPage2}"
+            BorderColor="Transparent"
+            WidthRequest="800"
+            >
+
+            <VerticalStackLayout
+                HorizontalOptions="Fill"
+                >
+                <Label
+                    HorizontalOptions="Center"
+                    Text="Servicio/Estatus"
+                    TextColor="Black"
+                    FontFamily="JaldiRegular"
+                    FontSize="22" />
+                
+                <CollectionView ItemsSource="{Binding  Services}"
+                                x:Name="ServicesCollection"
+                                >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout
+                                HorizontalOptions="Fill"
+                                >
+                                <FlexLayout
+                                    JustifyContent="SpaceBetween">
+                                    <HorizontalStackLayout
+                                        Padding="0, 10">
+                                        <Label
+                                            Text="{Binding ServiceName}"
+                                            TextColor="Black"
+                                            FontSize="20"
+                                            FontFamily="JaldiRegular" />
+                                        <Label
+                                            Text="{Binding Status}"
+                                            TextColor="{Binding Status, Converter={StaticResource StatusToTextColorConverter}}"
+                                            FontSize="20"
+                                            FontFamily="JaldiRegular"
+                                            Margin="20,0,0,0" />
+                                    </HorizontalStackLayout>
+                                    <HorizontalStackLayout
+                                        Spacing="10"
+                                        Padding="0, 10">
+                                        <Button
+                                            Text="Iniciar"
+                                            FontFamily="JaldiRegular"
+                                            FontSize="16"
+                                            Command="{Binding Path=BindingContext.ButtonClickedCommand, Source={x:Reference ServicesCollection}}"          
+                                            CommandParameter="{Binding .}"
+                                            />
+                                        <!-- <Button -->
+                                        <!--     Text="Actualizar" -->
+                                        <!--     FontFamily="JaldiRegular" -->
+                                        <!--     FontSize="16" -->
+                                        <!--     /> -->
+                                    </HorizontalStackLayout>
+                                </FlexLayout>
+                                <BoxView
+                                    Color="{StaticResource BgPage}"
+                                    Margin="0"
+                                    HeightRequest="2"
+                                    HorizontalOptions="Fill"
+                                    />
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </Frame>
+        
     </Grid>
 </ContentPage>
