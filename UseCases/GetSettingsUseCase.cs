@@ -4,7 +4,7 @@ using EcrOneClick.UseCases.Abstract;
 
 namespace EcrOneClick.UseCases;
 
-public class GetGetSettingsUseCase(ISettingsRepository repository) : IGetSettingsUseCase
+public class GetSettingsUseCase(ISettingsRepository repository) : IGetSettingsUseCase
 {
     public Settings Execute()
     {

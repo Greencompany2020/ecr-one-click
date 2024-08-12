@@ -5,7 +5,7 @@ using EcrOneClick.UseCases.Request;
 
 namespace EcrOneClick.UseCases;
 
-public class SaveSettingsesUseCase(ISettingsRepository repository)
+public class SaveSettingsUseCase(ISettingsRepository repository)
     : ISaveSettingsUseCase
 {
     public void Execute(SaveSettingsValuesRequest request)

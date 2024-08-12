@@ -54,8 +54,8 @@ public static class ServiceHelper
 
     public static MauiAppBuilder LoadUseCases(this MauiAppBuilder builder)
     {
-        builder.Services.AddSingleton<ISaveSettingsUseCase, SaveSettingsesUseCase>();
-        builder.Services.AddSingleton<IGetSettingsUseCase, GetGetSettingsUseCase>();
+        builder.Services.AddSingleton<ISaveSettingsUseCase, SaveSettingsUseCase>();
+        builder.Services.AddSingleton<IGetSettingsUseCase, GetSettingsUseCase>();
 
         return builder;
     }
