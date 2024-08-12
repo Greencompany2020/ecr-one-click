@@ -19,7 +19,5 @@
 ## or put your custom commands -------------------
 #echo 'Husky.Net is awesome!'
 
-echo 'Format'
-
-dotnet husky run --name dotnet-format-staged-files
+dotnet husky run
 

@@ -1,8 +1,8 @@
-﻿using EcrOneClick.DI;
-using EcrOneClick.Infrastructure;
-using EcrOneClick.Infrastructure.Abstract;
-using EcrOneClick.Presentation.ViewModels;
+﻿using CommunityToolkit.Maui;
+using EcrOneClick.DI;
+using EcrOneClick.Infrastructure.Database.Settings;
 using Microsoft.Extensions.Logging;
+using SQLite;
 
 namespace EcrOneClick;
 
@@ -13,6 +13,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -25,8 +26,16 @@ public static class MauiProgram
         builder.Logging.AddDebug();
 #endif
 
-        builder.Services.AddSingleton<MainViewModel>();
-        builder.Services.AddSingleton<IDockerService, DockerService>();
+        builder.LoadServices();
+        builder.LoadViewModels();
+        builder.LoadValidators();
+
+        builder.Services.AddSingleton<SQLiteConnection>((provider) =>
+            new SQLiteConnection(SqliteConnectionSetttings.DatabasePath, SqliteConnectionSetttings.Flags));
+
+        builder.LoadRepositories();
+        builder.LoadRepositories();
+        builder.LoadUseCases();
         
         var app = builder.Build();
         

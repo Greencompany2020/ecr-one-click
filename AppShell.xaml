@@ -7,7 +7,7 @@
     xmlns:views="clr-namespace:EcrOneClick.Presentation.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="EcrOneClick">
-
+    
     <ShellContent
         ContentTemplate="{DataTemplate views:MainPage}"
         Route="MainPage" />

@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EcrOneClick.Presentation.Views.SettingsPage"
+             xmlns:components="clr-namespace:EcrOneClick.Presentation.Views.Components"
+             xmlns:viewmodel="clr-namespace:EcrOneClick.Presentation.ViewModels">
+    
+    <!-- <ContentPage.BindingContext> -->
+    <!--     <viewmodel:ConfigurationsViewModel /> -->
+    <!-- </ContentPage.BindingContext> -->
+    
+    <Grid RowDefinitions=".1*,.9*"
+          RowSpacing="10">
+        <components:RectangleBackground />
+        <components:TitleView Title="Configuraciones" />
+
+        <Frame
+            Grid.Row="1"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            BackgroundColor="{StaticResource BgPage2}"
+            BorderColor="Transparent"
+            WidthRequest="450"
+            >
+            
+            <StackLayout
+                HorizontalOptions="Fill"
+                Spacing="5">
+
+                <Label x:Name="SettingsId" Text="{Binding Settings.Id}" IsVisible="False"/>
+                
+                <!-- TIENDA -->
+                <FlexLayout
+                    JustifyContent="Center"
+                >
+                    <Label
+                        Text="Tienda:"
+                        TextColor="Black"
+                        FontSize="18"
+                        FontFamily="JaldiRegular"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Margin="0,0,5,0" />
+                    <Entry
+                        Placeholder="Clave de Tienda"
+                        WidthRequest="150"
+                        Text="{Binding Settings.Store}"
+                        TextColor="Black"
+                        BackgroundColor="{StaticResource EntryBackground}"
+                        x:Name="StoreEntry"/>
+                </FlexLayout>
+                <!-- FIN TIENDA -->
+                
+                <Label
+                    x:Name="StoreErrorText"
+                    HorizontalOptions="Center"
+                    IsVisible="False"
+                    TextColor="Red" />
+                
+                <!-- CAJA -->
+                <FlexLayout
+                    JustifyContent="Center"
+                    >
+                    <Label
+                        Text="Caja:"
+                        TextColor="Black"
+                        FontSize="18"
+                        FontFamily="JaldiRegular"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Margin="0,0,11,0" />
+                    <Entry
+                        Placeholder="Caja"
+                        WidthRequest="150"
+                        Text="{Binding Settings.CashRegister}"
+                        TextColor="Black"
+                        BackgroundColor="{StaticResource EntryBackground}"
+                        x:Name="CashRegisterEntry"/>
+                </FlexLayout>
+                <!-- FIN CAJA -->
+                
+                <Label
+                    x:Name="CashRegisterErrorText"
+                    HorizontalOptions="Center"
+                    IsVisible="False"
+                    TextColor="Red" />
+                
+                <!-- USUARIO DOCKER -->
+                <FlexLayout
+                    JustifyContent="Center"
+                    >
+                    <Label
+                        Text="Docker User:"
+                        TextColor="Black"
+                        FontSize="18"
+                        FontFamily="JaldiRegular"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Margin="0,0,9,0"
+                        />
+                    <Entry
+                        TextColor="Black"
+                        WidthRequest="200"
+                        Placeholder="Usuario"
+                        BackgroundColor="{StaticResource EntryBackground}"
+                        Text="{Binding Settings.DockerUser}"
+                        x:Name="DockerUserEntry"/>
+                </FlexLayout>
+                <!-- FIN USUARIO DOCKER -->
+            
+                <Label
+                    x:Name="DockerUserErrorText"
+                    HorizontalOptions="Center"
+                    IsVisible="False"
+                    TextColor="Red" />
+                
+                <!-- DOCKER PASSWORD -->
+                <FlexLayout
+                    JustifyContent="Center"
+                    >
+                    <Label
+                        Text="Docker Pass:"
+                        TextColor="Black"
+                        FontSize="18"
+                        FontFamily="JaldiRegular"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Margin="0,0,10,0"
+                    />
+                    <HorizontalStackLayout
+                        WidthRequest="200"
+                        BackgroundColor="{StaticResource EntryBackground}"
+                    >
+                        <Entry
+                            TextColor="Black"
+                            WidthRequest="160"
+                            Placeholder="Password"
+                            BackgroundColor="{StaticResource EntryBackground}"
+                            Text="{Binding Settings.DockerPass}"
+                            IsPassword="{Binding HidePassword}"
+                            x:Name="DockerPasswordEntry"
+                        />
+                        <ImageButton
+                            Source="closed_eye.png"
+                            HorizontalOptions="Start"
+                            Scale="0.7"
+                            x:Name="DockerPasswordHideButton"
+                            Clicked="OnDockerPasswordHideButtonClicked"
+                        />
+                    </HorizontalStackLayout>
+                </FlexLayout>
+                <!-- FIN DOCKER PASSWORD -->
+                
+                <Label
+                    x:Name="DockerPassErrorText"
+                    HorizontalOptions="Center"
+                    IsVisible="False"
+                    TextColor="Red" />
+                
+                <!-- DOCKER TOKEN -->
+                <FlexLayout
+                    JustifyContent="Center"
+                    >
+                    <Label
+                        Text="Docker Token:"
+                        TextColor="Black"
+                        FontSize="18"
+                        FontFamily="JaldiRegular"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Margin="0,0,5,0"
+                    />
+                    <HorizontalStackLayout
+                        WidthRequest="200"
+                        BackgroundColor="{StaticResource EntryBackground}"
+                        >
+                        <Entry
+                            TextColor="Black"
+                            WidthRequest="160"
+                            Placeholder="Token"
+                            BackgroundColor="{StaticResource EntryBackground}"
+                            Text="{Binding Settings.DockerToken}"
+                            IsPassword="{Binding HideDockerToken}"
+                            x:Name="DockerTokenEntry"/>
+                        <ImageButton
+                            Source="closed_eye.png"
+                            HorizontalOptions="Start"
+                            Scale="0.7"
+                            x:Name="DockerTokenHideButton"
+                            Clicked="OnDockerTokenHidButtonClicked"
+                        />
+                    </HorizontalStackLayout>
+                </FlexLayout>
+                <!-- FIN DOCKER TOKEN -->
+            
+                <Label
+                    x:Name="DockerTokenErrorText"
+                    HorizontalOptions="Center"
+                    IsVisible="False"
+                    TextColor="Red" />
+                
+                <!-- DOPPLER TOKEN -->
+                <FlexLayout
+                    JustifyContent="Center"
+                    >
+                    <Label
+                        Text="Doppler Token:"
+                        TextColor="Black"
+                        FontSize="18"
+                        FontFamily="JaldiRegular"
+                        VerticalOptions="Center"
+                        Margin="0,0,1,0"
+                    />
+                    <HorizontalStackLayout
+                        WidthRequest="200"
+                        BackgroundColor="{StaticResource EntryBackground}"
+                        >
+                        <Entry
+                            TextColor="Black"
+                            WidthRequest="160"
+                            Placeholder="Token"
+                            BackgroundColor="{StaticResource EntryBackground}"
+                            Text="{Binding Settings.DopplerToken}"
+                            IsPassword="{Binding HideDopplerToken}"
+                            x:Name="DopplerTokenEntry"/>
+                        <ImageButton
+                            Source="closed_eye.png"
+                            HorizontalOptions="Start"
+                            Scale="0.7"
+                            x:Name="DopplerTokenHideButton"
+                            Clicked="OnDopplerTokenHideButtonClicked"
+                        />
+                    </HorizontalStackLayout>
+                </FlexLayout>
+                <!-- FIN DOPPLER TOKEN -->
+            
+                <Label
+                    x:Name="DopplerTokenErrorText"
+                    HorizontalOptions="Center"
+                    IsVisible="False"
+                    TextColor="Red" />
+                
+                <Button
+                    Text="Guardar"
+                    FontFamily="JaldiRegular"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Margin="0,10,0,0"
+                    FontSize="20"
+                    x:Name="SaveBtn"
+                    Clicked="OnSaveButtonClicked"
+                    />
+        </StackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>
