@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using EcrOneClick.Domain.Entities;
 using EcrOneClick.Presentation.Abstract;
+using EcrOneClick.Presentation.Models;
 using EcrOneClick.UseCases.Abstract;
 using EcrOneClick.UseCases.Request;
 
@@ -9,7 +9,7 @@ namespace EcrOneClick.Presentation.ViewModels;
 public partial class ConfigurationsViewModel : ObservableObject, IBaseViewModel
 {
     [ObservableProperty]
-    private Configurations _config = new();
+    private ConfigurationsUiModel _config = new();
 
     [ObservableProperty]
     private bool _hidePassword = true;
@@ -31,7 +31,6 @@ public partial class ConfigurationsViewModel : ObservableObject, IBaseViewModel
     {
         _saveConfiguration = saveConfiguration;
         _getConfigurations = getConfigurations;
-        
     }
 
     public void TogglePassword()

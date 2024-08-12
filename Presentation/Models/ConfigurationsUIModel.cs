@@ -2,7 +2,7 @@
 
 namespace EcrOneClick.Presentation.Models;
 
-public partial class ConfigurationsUIModel : ObservableObject
+public partial class ConfigurationsUiModel : ObservableObject
 {
     public int Id { get; set;  }
 
@@ -10,17 +10,17 @@ public partial class ConfigurationsUIModel : ObservableObject
     private string _store;
     
     [ObservableProperty]
-    private string CashRegister;
+    private string _cashRegister;
     
     [ObservableProperty]
-    private string DockerUser;
+    private string _dockerUser;
     
     [ObservableProperty]
-    private string DockerPass;
+    private string _dockerPass;
     
     [ObservableProperty]
-    private string DockerToken;
+    private string _dockerToken;
     
     [ObservableProperty]
-    private string DopplerToken;
+    private string _dopplerToken;
 }
