@@ -4,7 +4,8 @@ namespace EcrOneClick.Presentation.Models;
 
 public partial class SettingsUiModel : ObservableObject
 {
-    public int Id { get; set;  }
+    [ObservableProperty]
+    public int _id;
 
     [ObservableProperty]
     private string _store;

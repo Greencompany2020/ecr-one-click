@@ -17,6 +17,9 @@ public class SqliteSettingsRepository : ISettingsRepository
 
     public void SaveSettings(Domain.Entities.Settings settings)
     {
+        var existingSettings = _conn.Table<SettingsModel>()
+            .FirstOrDefault(settingsModel => settingsModel.Id == settings.Id);
+
         var model = new SettingsModel
         {
             Id = settings.Id,
@@ -27,8 +30,16 @@ public class SqliteSettingsRepository : ISettingsRepository
             DockerToken = settings.DockerToken,
             DopplerToken = settings.DockerToken
         };
+        
+        if (existingSettings is null)
+        {
 
-        _conn.Insert(model);
+            _conn.Insert(model);            
+        }
+        else
+        {
+            _conn.Update(model);
+        }
     }
 
     public Domain.Entities.Settings GetSettings()

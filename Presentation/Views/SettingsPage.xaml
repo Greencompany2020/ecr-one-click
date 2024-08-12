@@ -23,10 +23,12 @@
             BorderColor="Transparent"
             WidthRequest="450"
             >
-
+            
             <StackLayout
                 HorizontalOptions="Fill"
                 Spacing="5">
+
+                <Label x:Name="SettingsId" Text="{Binding Settings.Id}" IsVisible="False"/>
                 
                 <!-- TIENDA -->
                 <FlexLayout

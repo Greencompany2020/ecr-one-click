@@ -118,8 +118,16 @@ public partial class SettingsPage : ContentPage
         var dockerPass = DockerPasswordEntry.Text;
         var dockerToken = DockerTokenEntry.Text;
         var dopplerToken = DopplerTokenEntry.Text;
+
+
+        var id = 0;
+
+        if (!string.IsNullOrEmpty(SettingsId.Text))
+        {
+            id = Convert.ToInt32(SettingsId.Text);
+        }
         
-        SaveSettingsValuesRequest request = new (0, store, cashRegister, dockerUser, dockerPass, dockerToken, dopplerToken);
+        SaveSettingsValuesRequest request = new (id, store, cashRegister, dockerUser, dockerPass, dockerToken, dopplerToken);
 
         var result = await _validator.ValidateAsync(request);
 
@@ -145,7 +153,6 @@ public partial class SettingsPage : ContentPage
 
     protected override void OnAppearing()
     {
-        Debug.WriteLine("Calling OnAppearing");
         GetViewModel().LoadSettings();
     }
 }

@@ -50,6 +50,7 @@ public partial class SettingsViewModel : ObservableObject, IBaseViewModel
 
     public void SaveSettingsValues(SaveSettingsValuesRequest request)
     {
+        Settings.Id = request.Id;
         Settings.Store = request.Store;
         Settings.CashRegister = request.CashRegister;
         Settings.DockerUser = request.DockerUser;
@@ -63,7 +64,8 @@ public partial class SettingsViewModel : ObservableObject, IBaseViewModel
     public void LoadSettings()
     {
         var settings = _getSettings.Execute();
-        
+
+        Settings.Id = settings.Id;
         Settings.Store = settings.Store;
         Settings.CashRegister = settings.CashRegister;
         Settings.DockerUser = settings.DockerUser;
