@@ -22,13 +22,14 @@
                 FontSize="25"
                 WidthRequest="180"
                 HeightRequest="80"
+                Clicked="OnServicesButtonClicked"
                 />
             <Button
                 Text="Configuraciones"
                 FontSize="25"
                 WidthRequest="180"
                 HeightRequest="80"
-                Clicked="OnConfigurationsButtonClicked"
+                Clicked="OnSettingsButtonClicked"
                 />
         </StackLayout>
     </Grid>

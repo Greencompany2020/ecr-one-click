@@ -17,8 +17,13 @@ public partial class MainPage : ContentPage
         viewModel.LoadImages();
     }
 
-    private async void OnConfigurationsButtonClicked(object? sender, EventArgs e)
+    private async void OnSettingsButtonClicked(object? sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("SettingsPage");
+    }
+
+    private async void OnServicesButtonClicked(object? sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("ServicesPage");
     }
 }
