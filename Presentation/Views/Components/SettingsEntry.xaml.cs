@@ -1,16 +1,16 @@
 ﻿namespace EcrOneClick.Presentation.Views.Components;
 
-public partial class ConfigEntry : ContentView
+public partial class SettingsEntry : ContentView
 {
     
     public static readonly BindableProperty LabelTextProperty = BindableProperty.Create(
-        nameof(LabelText), typeof(string), typeof(ConfigEntry), string.Empty);
+        nameof(LabelText), typeof(string), typeof(SettingsEntry), string.Empty);
 
     public static readonly BindableProperty EntryPlaceholderProperty = BindableProperty.Create(
-        nameof(EntryPlaceholder), typeof(string), typeof(ConfigEntry), string.Empty);
+        nameof(EntryPlaceholder), typeof(string), typeof(SettingsEntry), string.Empty);
 
     public static readonly BindableProperty IsSecretProperty = BindableProperty.Create(
-        nameof(IsSecret), typeof(bool), typeof(ConfigEntry), false);
+        nameof(IsSecret), typeof(bool), typeof(SettingsEntry), false);
     
     /// <summary>
     /// Texto de nombre del campo
@@ -40,7 +40,7 @@ public partial class ConfigEntry : ContentView
         set => SetValue(IsSecretProperty, value);
     }
     
-    public ConfigEntry()
+    public SettingsEntry()
     {
         InitializeComponent();
     }

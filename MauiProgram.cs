@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using EcrOneClick.DI;
-using EcrOneClick.Infrastructure.Database.Configurations;
+using EcrOneClick.Infrastructure.Database.Settings;
 using Microsoft.Extensions.Logging;
 using SQLite;
 
@@ -31,7 +31,7 @@ public static class MauiProgram
         builder.LoadValidators();
 
         builder.Services.AddSingleton<SQLiteConnection>((provider) =>
-            new SQLiteConnection(SqliteConfiguration.DatabasePath, SqliteConfiguration.Flags));
+            new SQLiteConnection(SqliteConnectionSetttings.DatabasePath, SqliteConnectionSetttings.Flags));
 
         builder.LoadRepositories();
         builder.LoadRepositories();

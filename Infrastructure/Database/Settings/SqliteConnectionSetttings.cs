@@ -1,8 +1,8 @@
 ﻿using SQLite;
 
-namespace EcrOneClick.Infrastructure.Database.Configurations;
+namespace EcrOneClick.Infrastructure.Database.Settings;
 
-public static class SqliteConfiguration
+public static class SqliteConnectionSetttings
 {
     private const string DBFileName = "EcrOneClick.db3";
 

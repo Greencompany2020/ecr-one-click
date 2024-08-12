@@ -2,7 +2,7 @@
 
 namespace EcrOneClick.Presentation.Models;
 
-public partial class ConfigurationsUiModel : ObservableObject
+public partial class SettingsUiModel : ObservableObject
 {
     public int Id { get; set;  }
 

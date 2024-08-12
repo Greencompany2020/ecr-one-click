@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace EcrOneClick.Presentation.ViewModels.Validators;
 
-public class SaveConfigurationValuesRequestValidator : AbstractValidator<SaveConfigurationValuesRequest>
+public class SaveSettingsValuesRequestValidator : AbstractValidator<SaveSettingsValuesRequest>
 {
-    public SaveConfigurationValuesRequestValidator()
+    public SaveSettingsValuesRequestValidator()
     {
         RuleFor(config => config.Store)
             .NotEmpty()

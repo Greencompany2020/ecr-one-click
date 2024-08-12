@@ -8,20 +8,20 @@ using FluentValidation.Results;
 
 namespace EcrOneClick.Presentation.Views;
 
-public partial class ConfigurationsPage : ContentPage
+public partial class SettingsPage : ContentPage
 {
-    private readonly IValidator<SaveConfigurationValuesRequest> _validator;
+    private readonly IValidator<SaveSettingsValuesRequest> _validator;
 
-    public ConfigurationsPage()
+    public SettingsPage()
     {
         InitializeComponent();
-        BindingContext = ServiceHelper.GetService<ConfigurationsViewModel>();
-        _validator = ServiceHelper.GetService<IValidator<SaveConfigurationValuesRequest>>();
+        BindingContext = ServiceHelper.GetService<SettingsViewModel>();
+        _validator = ServiceHelper.GetService<IValidator<SaveSettingsValuesRequest>>();
     }
     
-    private ConfigurationsViewModel GetViewModel()
+    private SettingsViewModel GetViewModel()
     {
-        var viewModel = (ConfigurationsViewModel)BindingContext;
+        var viewModel = (SettingsViewModel)BindingContext;
         return viewModel;
     }
     
@@ -119,7 +119,7 @@ public partial class ConfigurationsPage : ContentPage
         var dockerToken = DockerTokenEntry.Text;
         var dopplerToken = DopplerTokenEntry.Text;
         
-        SaveConfigurationValuesRequest request = new (0, store, cashRegister, dockerUser, dockerPass, dockerToken, dopplerToken);
+        SaveSettingsValuesRequest request = new (0, store, cashRegister, dockerUser, dockerPass, dockerToken, dopplerToken);
 
         var result = await _validator.ValidateAsync(request);
 
@@ -135,17 +135,17 @@ public partial class ConfigurationsPage : ContentPage
 
             var viewModel = GetViewModel();
         
-            viewModel.SaveConfigValues(request);
+            viewModel.SaveSettingsValues(request);
             
             await DisplayAlert("Configuraciones", "Se han guardado los valores", "OK");
             
-            viewModel.LoadConfigurations();
+            viewModel.LoadSettings();
         }
     }
 
     protected override void OnAppearing()
     {
         Debug.WriteLine("Calling OnAppearing");
-        GetViewModel().LoadConfigurations();
+        GetViewModel().LoadSettings();
     }
 }

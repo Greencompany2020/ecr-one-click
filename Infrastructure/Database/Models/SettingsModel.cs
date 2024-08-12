@@ -2,7 +2,7 @@
 
 namespace EcrOneClick.Infrastructure.Database.Models;
 
-public class ConfigurationsModel
+public class SettingsModel
 {
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }

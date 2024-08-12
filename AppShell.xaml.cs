@@ -13,6 +13,6 @@ public partial class AppShell : Shell
 
     private void RegisterRoutes()
     {
-        Routing.RegisterRoute(nameof(ConfigurationsPage), typeof(ConfigurationsPage));
+        Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
     }
 }

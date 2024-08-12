@@ -10,7 +10,7 @@
 /// <param name="DockerPass"></param>
 /// <param name="DockerToken"></param>
 /// <param name="DopplerToken"></param>
-public record SaveConfigurationValuesRequest(
+public record SaveSettingsValuesRequest(
     int Id,
     string Store,
     string CashRegister,

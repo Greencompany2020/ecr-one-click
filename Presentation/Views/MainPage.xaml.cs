@@ -19,6 +19,6 @@ public partial class MainPage : ContentPage
 
     private async void OnConfigurationsButtonClicked(object? sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("ConfigurationsPage");
+        await Shell.Current.GoToAsync("SettingsPage");
     }
 }

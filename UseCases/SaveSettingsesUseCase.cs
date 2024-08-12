@@ -5,12 +5,12 @@ using EcrOneClick.UseCases.Request;
 
 namespace EcrOneClick.UseCases;
 
-public class SaveConfigurationsUseCase(IConfigurationsRepository repository)
-    : ISaveConfigurationUseCase
+public class SaveSettingsesUseCase(ISettingsRepository repository)
+    : ISaveSettingsUseCase
 {
-    public void Execute(SaveConfigurationValuesRequest request)
+    public void Execute(SaveSettingsValuesRequest request)
     {
-        var configurations = new Configurations()
+        var configurations = new Settings()
         {
             Id = request.Id,
             Store = request.Store,
@@ -21,7 +21,7 @@ public class SaveConfigurationsUseCase(IConfigurationsRepository repository)
             DopplerToken = request.DopplerToken
         };
         
-        repository.SaveConfigurations(configurations);
+        repository.SaveSettings(configurations);
     }
 
     /// <summary>
@@ -30,7 +30,7 @@ public class SaveConfigurationsUseCase(IConfigurationsRepository repository)
     /// <param name="request"></param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    public Task ExecuteAsync(SaveConfigurationValuesRequest request)
+    public Task ExecuteAsync(SaveSettingsValuesRequest request)
     {
         throw new NotImplementedException();
     }

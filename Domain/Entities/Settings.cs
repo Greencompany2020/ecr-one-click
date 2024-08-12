@@ -1,6 +1,6 @@
 ﻿namespace EcrOneClick.Domain.Entities;
 
-public class Configurations
+public class Settings
 {
     public int Id { get; set;  }
     public string Store { get; set; } = string.Empty;

@@ -40,22 +40,22 @@ public static class ServiceHelper
     public static MauiAppBuilder LoadValidators(this MauiAppBuilder builder)
     {
         builder.Services
-            .AddSingleton<IValidator<SaveConfigurationValuesRequest>, SaveConfigurationValuesRequestValidator>();
+            .AddSingleton<IValidator<SaveSettingsValuesRequest>, SaveSettingsValuesRequestValidator>();
 
         return builder;
     }
 
     public static MauiAppBuilder LoadRepositories(this MauiAppBuilder builder)
     {
-        builder.Services.AddSingleton<IConfigurationsRepository, SqliteConfigurationsRepository>();
+        builder.Services.AddSingleton<ISettingsRepository, SqliteSettingsRepository>();
 
         return builder;
     }
 
     public static MauiAppBuilder LoadUseCases(this MauiAppBuilder builder)
     {
-        builder.Services.AddSingleton<ISaveConfigurationUseCase, SaveConfigurationsUseCase>();
-        builder.Services.AddSingleton<IGetConfigurationsUseCase, GetConfigurationsUseCase>();
+        builder.Services.AddSingleton<ISaveSettingsUseCase, SaveSettingsesUseCase>();
+        builder.Services.AddSingleton<IGetSettingsUseCase, GetGetSettingsUseCase>();
 
         return builder;
     }
