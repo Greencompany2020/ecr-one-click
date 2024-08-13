@@ -2,6 +2,7 @@
 using EcrOneClick.DI;
 using EcrOneClick.Infrastructure.Database.Settings;
 using Microsoft.Extensions.Logging;
+using Serilog;
 using SQLite;
 
 namespace EcrOneClick;
@@ -26,6 +27,10 @@ public static class MauiProgram
         builder.Logging.AddDebug();
 #endif
 
+        builder.Services.AddSerilog(new LoggerConfiguration()
+            .WriteTo.Debug()
+            .WriteTo.File(Path.Combine(FileSystem.Current.AppDataDirectory, "logs/log.txt"), rollingInterval: RollingInterval.Day)
+            .CreateLogger());
         builder.LoadServices();
         builder.LoadViewModels();
         builder.LoadValidators();

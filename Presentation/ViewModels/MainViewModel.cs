@@ -1,16 +1,19 @@
-using System.Diagnostics;
 using EcrOneClick.Infrastructure.Abstract;
 using EcrOneClick.Presentation.Abstract;
+using Microsoft.Extensions.Logging;
 
 namespace EcrOneClick.Presentation.ViewModels;
 
 public class MainViewModel : IBaseViewModel
 {
     private readonly IDockerService _dockerService;
+
+    private readonly ILogger<MainViewModel> _logger;
     
-    public MainViewModel(IDockerService dockerService)
+    public MainViewModel(IDockerService dockerService, ILogger<MainViewModel> logger)
     {
         _dockerService = dockerService;
+        _logger = logger;
     }
 
     public async void BeginSwarmMode()
@@ -21,17 +24,16 @@ public class MainViewModel : IBaseViewModel
 
             if (result.IsFailed)
             {
-                Debug.WriteLine(result);
-                await Shell.Current.DisplayAlert("Swarm Mode", "No se pudo iniciar el modo Swarm. Utilizando contendores.", "OK");
+                _logger.LogInformation("[{Model}.{Method}]: Cannot init Docker Swarm Mode. Using default containers mode", nameof(MainViewModel), nameof(BeginSwarmMode));
             }
             else
             {
-                await Shell.Current.DisplayAlert("Swarm Mode", "Modo Swarm Iniciado", "OK");
+                _logger.LogInformation("[{Model}.{Method}]: Swarm Mode Initialized", nameof(MainViewModel), nameof(BeginSwarmMode));
             }
         }
         else
         {
-            await Shell.Current.DisplayAlert("Swarm Mode", "Modo Swarm Iniciado", "OK");
+            _logger.LogInformation("[{Model}.{Method}]: Swarm Mode Initialized", nameof(MainViewModel), nameof(BeginSwarmMode));
         }
     }
 }
