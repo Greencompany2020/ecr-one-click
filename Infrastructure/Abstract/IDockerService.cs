@@ -5,11 +5,9 @@ namespace EcrOneClick.Infrastructure.Abstract;
 
 public interface IDockerService
 {
-    Task<Result<List<DockerImage>>> GetImages();
+    bool IsInSwarmMode { get; set; }
     
-    /// <summary>
-    /// Verifica si el host esta en modo swarm.
-    /// </summary>
-    /// <returns>Cuando no esta en modo swarm retornamos Result.Fail</returns>
-    Task<Result<bool>> IsInSwarmMode();
+    Task<Result<List<DockerImage>>> GetContainers();
+    
+    Task<Result<bool>> BeginSwarmMode();
 }

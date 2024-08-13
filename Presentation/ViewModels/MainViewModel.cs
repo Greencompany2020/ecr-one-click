@@ -1,15 +1,11 @@
-using System.Collections.ObjectModel;
-using CommunityToolkit.Mvvm.ComponentModel;
+using System.Diagnostics;
 using EcrOneClick.Infrastructure.Abstract;
 using EcrOneClick.Presentation.Abstract;
 
 namespace EcrOneClick.Presentation.ViewModels;
 
-public partial class MainViewModel : ObservableObject, IBaseViewModel
+public class MainViewModel : IBaseViewModel
 {
-    [ObservableProperty]
-    private ObservableCollection<DockerImage> _images;
-
     private readonly IDockerService _dockerService;
     
     public MainViewModel(IDockerService dockerService)
@@ -17,10 +13,25 @@ public partial class MainViewModel : ObservableObject, IBaseViewModel
         _dockerService = dockerService;
     }
 
-    public async void LoadImages()
+    public async void BeginSwarmMode()
     {
-        var images = await _dockerService.GetImages();
-        
-        Images = new ObservableCollection<DockerImage>(images);
+        if (!_dockerService.IsInSwarmMode)
+        {
+            var result = await _dockerService.BeginSwarmMode();
+
+            if (result.IsFailed)
+            {
+                Debug.WriteLine(result);
+                await Shell.Current.DisplayAlert("Swarm Mode", "No se pudo iniciar el modo Swarm. Utilizando contendores.", "OK");
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("Swarm Mode", "Modo Swarm Iniciado", "OK");
+            }
+        }
+        else
+        {
+            await Shell.Current.DisplayAlert("Swarm Mode", "Modo Swarm Iniciado", "OK");
+        }
     }
 }

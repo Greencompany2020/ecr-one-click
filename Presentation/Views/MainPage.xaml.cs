@@ -14,7 +14,7 @@ public partial class MainPage : ContentPage
     protected override void OnAppearing()
     {
         var viewModel = (MainViewModel)BindingContext;
-        viewModel.LoadImages();
+        viewModel.BeginSwarmMode();
     }
 
     private async void OnSettingsButtonClicked(object? sender, EventArgs e)
