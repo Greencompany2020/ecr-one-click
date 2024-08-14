@@ -29,7 +29,9 @@ public static class MauiProgram
 
         builder.Services.AddSerilog(new LoggerConfiguration()
             .WriteTo.Debug()
-            .WriteTo.File(Path.Combine(FileSystem.Current.AppDataDirectory, "logs/log.txt"), rollingInterval: RollingInterval.Day)
+            .WriteTo.File(Path.Combine(FileSystem.Current.AppDataDirectory, "logs/log.txt"),
+                rollingInterval: RollingInterval.Day
+                )
             .CreateLogger());
         builder.LoadServices();
         builder.LoadViewModels();
