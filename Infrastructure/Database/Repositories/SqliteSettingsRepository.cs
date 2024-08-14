@@ -120,8 +120,13 @@ public class SqliteSettingsRepository : ISettingsRepository
         {
             var result = _conn.Table<DockerSettingsModel>().FirstOrDefault();
 
-            if (result is null) return Result.Ok(false);
+            if (result is null)
+            {
+                _logger.LogInformation("[{Repository}.{Method}]: No records for Docker Settings. Returning default value: false", nameof(SqliteSettingsRepository), nameof(GetSwarmMode));
+                return Result.Ok(false);
+            }
 
+            _logger.LogInformation("[{Repository}.{Method}]: Found Docker Settings records", nameof(SqliteSettingsRepository), nameof(GetSwarmMode));
             var swarmMode = result.IsInSwarmMode == "Y";
 
             return Result.Ok(swarmMode);
