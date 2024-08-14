@@ -1,5 +1,7 @@
 ﻿using EcrOneClick.Domain.Repositories;
 using EcrOneClick.Infrastructure.Database.Models;
+using FluentResults;
+using Microsoft.Extensions.Logging;
 using SQLite;
 
 namespace EcrOneClick.Infrastructure.Database.Repositories;
@@ -7,11 +9,14 @@ namespace EcrOneClick.Infrastructure.Database.Repositories;
 public class SqliteSettingsRepository : ISettingsRepository
 {
     private readonly SQLiteConnection _conn;
+    private readonly ILogger<SqliteSettingsRepository> _logger;
 
-    public SqliteSettingsRepository(SQLiteConnection conn)
+    public SqliteSettingsRepository(SQLiteConnection conn, ILogger<SqliteSettingsRepository> logger)
     {
         _conn = conn;
         _conn.CreateTable<SettingsModel>();
+        _conn.CreateTable<DockerSettingsModel>();
+        _logger = logger;
     }
 
 
@@ -41,7 +46,7 @@ public class SqliteSettingsRepository : ISettingsRepository
             _conn.Update(model);
         }
     }
-
+    // TODO: Agregar Result
     public Domain.Entities.Settings GetSettings()
     {
         var result = _conn.Table<SettingsModel>()
@@ -65,4 +70,67 @@ public class SqliteSettingsRepository : ISettingsRepository
 
         return settings;
     }
+
+    public Result SetSwarmMode(bool isInSwarmMode)
+    {
+        try
+        {
+            var result = _conn.Table<DockerSettingsModel>()
+                .FirstOrDefault();
+
+            if (result is null)
+            {
+                var model = new DockerSettingsModel()
+                {
+                    IsInSwarmMode = isInSwarmMode ? "Y" : "N"
+                };
+
+                _conn.Insert(model);
+                
+                _logger.LogInformation("[{Repository}.{Method}]: Inserted new docker settings record. IsInSwarmMode: {Value}",
+                    nameof(SqliteSettingsRepository),
+                    nameof(SetSwarmMode),
+                    isInSwarmMode);
+            }
+            else
+            {
+                result.IsInSwarmMode = isInSwarmMode ? "Y" : "N";
+
+                _conn.Update(result);
+                
+                _logger.LogInformation("[{Repository}.{Method}]: Updated docker settings. IsInSwarmMode: {Value}",
+                    nameof(SqliteSettingsRepository),
+                    nameof(SetSwarmMode),
+                    isInSwarmMode);
+            }
+
+
+            return Result.Ok();
+        }
+        catch (Exception e)
+        {
+            _logger.LogError("[{Repository}.{Method}]: {Error}", nameof(SqliteSettingsRepository), nameof(SetSwarmMode), e.Message);
+            return Result.Fail(e.Message);
+        }
+    }
+
+    public Result<bool> GetSwarmMode()
+    {
+        try
+        {
+            var result = _conn.Table<DockerSettingsModel>().FirstOrDefault();
+
+            if (result is null) return Result.Ok(false);
+
+            var swarmMode = result.IsInSwarmMode == "Y";
+
+            return Result.Ok(swarmMode);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError("[{Repository}.{Method}]: {Error}", nameof(SqliteSettingsRepository), nameof(GetSwarmMode), e.Message);
+            return Result.Fail(e.Message);
+        }
+    }
+    
 }
