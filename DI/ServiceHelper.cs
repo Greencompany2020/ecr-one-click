@@ -56,6 +56,8 @@ public static class ServiceHelper
     {
         builder.Services.AddSingleton<ISaveSettingsUseCase, SaveSettingsUseCase>();
         builder.Services.AddSingleton<IGetSettingsUseCase, GetSettingsUseCase>();
+        builder.Services.AddSingleton<ISetSwarmMode, SetSwarmMode>();
+        builder.Services.AddSingleton<IGetSwarmMode, GetSwarmMode>();
 
         return builder;
     }
