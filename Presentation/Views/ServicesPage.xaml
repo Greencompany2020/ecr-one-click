@@ -11,9 +11,9 @@
         <converters:StatusToTextColorConverter x:Key="StatusToTextColorConverter" />
     </ContentPage.Resources>
     
-    <ContentPage.BindingContext>
-        <viewmodel:ServicesViewModel />    
-    </ContentPage.BindingContext>
+    <!-- <ContentPage.BindingContext> -->
+    <!--     <viewmodel:ServicesViewModel />     -->
+    <!-- </ContentPage.BindingContext> -->
     
     <Grid
         RowDefinitions=".1*,.9*"
