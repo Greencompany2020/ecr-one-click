@@ -60,10 +60,7 @@ public class DockerService : IDockerService
     {
         try
         {
-            var servicesResult = await _dockerClient.Swarm.ListServicesAsync(new ServicesListParameters()
-            {
-                
-            });
+            var servicesResult = await _dockerClient.Swarm.ListServicesAsync(new ServicesListParameters());
 
             if (servicesResult is null)
             {
@@ -78,7 +75,7 @@ public class DockerService : IDockerService
                 serviceList.Add(new DockerServiceItem
                 {
                     Name = service.Spec.Name,
-                    Status = service.ServiceStatus.RunningTasks > 1 ? ServiceStatus.Active : ServiceStatus.Inactive
+                    Status = service.Spec.Mode.Replicated.Replicas >= 1 ? ServiceStatus.Active : ServiceStatus.Inactive
                 });
             }
 
