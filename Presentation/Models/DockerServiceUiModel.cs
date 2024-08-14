@@ -2,6 +2,6 @@
 
 public class DockerServiceUiModel
 {
-    public string ServiceName { get; set; }
-    public string Status { get; set; }
+    public string ServiceName { get; set; } = string.Empty;
+    public string Status { get; set; } = string.Empty;
 }
