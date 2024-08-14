@@ -40,8 +40,8 @@ public class DockerService : IDockerService
             {
                 imageList.Add(new DockerServiceItem()
                 {
-                    Name = string.Join(",", container.Names),
-                    Status = container.Status
+                    Name = string.Join(",", container.Names).Replace("/", ""),
+                    Status = container.State == "running" ? ServiceStatus.Active : ServiceStatus.Inactive
                 });
             }
 
@@ -51,7 +51,7 @@ public class DockerService : IDockerService
         }
         catch (Exception e)
         {
-            _logger.LogError("[{Service}.{Method}]: {Error}", nameof(DockerService), nameof(GetContainers), e.Message);
+            _logger.LogError(e, "[{Service}.{Method}]: {Error}", nameof(DockerService), nameof(GetContainers), e.Message);
             return Result.Fail(e.Message);
         }
     }
@@ -84,7 +84,7 @@ public class DockerService : IDockerService
         }
         catch (Exception e)
         {
-            _logger.LogError("[{Service}.{Method}]: {Error}", nameof(DockerService), nameof(GetServices), e.Message);
+            _logger.LogError(e, "[{Service}.{Method}]: {Error}", nameof(DockerService), nameof(GetServices), e.Message);
             return Result.Fail(e.Message);
         }
     }
@@ -97,6 +97,8 @@ public class DockerService : IDockerService
             {
                 ListenAddr = "0.0.0.0"
             });
+            // Para testing de uso de contenedores
+            // var result = await _dockerClient.Swarm.InitSwarmAsync(new SwarmInitParameters());
 
             // En realidad no verificamos si es true o false en donde se llama.
             // Cuando no esta en modo swarm arroja una excepcion y con ello
@@ -107,7 +109,7 @@ public class DockerService : IDockerService
         }
         catch (Exception e)
         {
-            _logger.LogError("[{Service}.{Method}]: {Error}", nameof(DockerService), nameof(BeginSwarmMode), e.Message);
+            _logger.LogError(e, "[{Service}.{Method}]: {Error}", nameof(DockerService), nameof(BeginSwarmMode), e.Message);
             return Result.Fail(e.Message);
         }
     }
