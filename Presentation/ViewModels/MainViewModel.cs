@@ -27,13 +27,13 @@ public class MainViewModel : IBaseViewModel
                 _logger.LogInformation("[{Model}.{Method}]: Cannot init Docker Swarm Mode. Using default containers mode", nameof(MainViewModel), nameof(BeginSwarmMode));
             }
             else
-            {
-                _logger.LogInformation("[{Model}.{Method}]: Swarm Mode Initialized", nameof(MainViewModel), nameof(BeginSwarmMode));
+            { 
+                _logger.LogInformation("[{Model}.{Method}]: Swarm Mode initialized", nameof(MainViewModel), nameof(BeginSwarmMode));
             }
         }
         else
         {
-            _logger.LogInformation("[{Model}.{Method}]: Swarm Mode Initialized", nameof(MainViewModel), nameof(BeginSwarmMode));
+            _logger.LogInformation("[{Model}.{Method}]: Swarm Mode is already running", nameof(MainViewModel), nameof(BeginSwarmMode));
         }
     }
 }
