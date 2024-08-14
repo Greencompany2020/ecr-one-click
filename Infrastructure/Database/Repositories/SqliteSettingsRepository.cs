@@ -18,8 +18,7 @@ public class SqliteSettingsRepository : ISettingsRepository
         _conn.CreateTable<DockerSettingsModel>();
         _logger = logger;
     }
-
-
+    
     public void SaveSettings(Domain.Entities.Settings settings)
     {
         var existingSettings = _conn.Table<SettingsModel>()

@@ -3,46 +3,91 @@ using Docker.DotNet.Models;
 using EcrOneClick.Infrastructure.Abstract;
 using EcrOneClick.Infrastructure.Data;
 using FluentResults;
+using Microsoft.Extensions.Logging;
+using ServiceStatus = EcrOneClick.Presentation.Values.ServiceStatus;
 
 namespace EcrOneClick.Infrastructure;
 
 public class DockerService : IDockerService
 {
-    public bool IsInSwarmMode { get; set; }
-    
     private readonly DockerClient _dockerClient;
+    private readonly ILogger<DockerService> _logger;
     
-    public DockerService()
+    public DockerService(ILogger<DockerService> logger)
     {
         _dockerClient = new DockerClientConfiguration().CreateClient();
+        _logger = logger;
     }
 
-    public async Task<Result<List<DockerImage>>> GetContainers()
+    public async Task<Result<List<DockerServiceItem>>> GetContainers()
     {
         try
         {
-            var images = await _dockerClient.Containers.ListContainersAsync(new ContainersListParameters()
+            var containers = await _dockerClient.Containers.ListContainersAsync(new ContainersListParameters()
             {
                 All = true
             });
 
-            if (images is null) return Result.Ok(new List<DockerImage>());
-
-            List<DockerImage> imageList = [];
-
-            foreach (var image in images)
+            if (containers is null)
             {
-                imageList.Add(new DockerImage()
+                _logger.LogWarning("[{Service}.{Method}]: Returned containers list is NULL", nameof(DockerService), nameof(GetContainers));
+                return Result.Ok(new List<DockerServiceItem>());
+            }
+
+            List<DockerServiceItem> imageList = [];
+
+            foreach (var container in containers)
+            {
+                imageList.Add(new DockerServiceItem()
                 {
-                    Name = string.Join(",", image.Names),
-                    Status = image.Status
+                    Name = string.Join(",", container.Names),
+                    Status = container.Status
                 });
             }
 
+            _logger.LogInformation("[{Service}.{Method}]: Returned {Records} containers", nameof(DockerService), nameof(GetContainers), imageList.Count);
+            
             return Result.Ok(imageList);
         }
         catch (Exception e)
         {
+            _logger.LogError("[{Service}.{Method}]: {Error}", nameof(DockerService), nameof(GetContainers), e.Message);
+            return Result.Fail(e.Message);
+        }
+    }
+
+    public async Task<Result<List<DockerServiceItem>>> GetServices()
+    {
+        try
+        {
+            var servicesResult = await _dockerClient.Swarm.ListServicesAsync(new ServicesListParameters()
+            {
+                
+            });
+
+            if (servicesResult is null)
+            {
+                _logger.LogWarning("[{Service}.{Method}]: Returned service list is NULL", nameof(DockerService), nameof(GetServices));
+                return Result.Ok(new List<DockerServiceItem>());
+            }
+
+            List<DockerServiceItem> serviceList = [];
+
+            foreach (var service in servicesResult)
+            {
+                serviceList.Add(new DockerServiceItem
+                {
+                    Name = service.Spec.Name,
+                    Status = service.ServiceStatus.RunningTasks > 1 ? ServiceStatus.Active : ServiceStatus.Inactive
+                });
+            }
+
+            _logger.LogInformation("[{Service}.{Method}]: Returned {Records} services", nameof(DockerService), nameof(GetServices), serviceList.Count);
+            return Result.Ok(serviceList);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError("[{Service}.{Method}]: {Error}", nameof(DockerService), nameof(GetServices), e.Message);
             return Result.Fail(e.Message);
         }
     }
@@ -51,18 +96,21 @@ public class DockerService : IDockerService
     {
         try
         {
-            var result = await _dockerClient.Swarm.InitSwarmAsync(new SwarmInitParameters());
+            var result = await _dockerClient.Swarm.InitSwarmAsync(new SwarmInitParameters
+            {
+                ListenAddr = "0.0.0.0"
+            });
 
             // En realidad no verificamos si es true o false en donde se llama.
             // Cuando no esta en modo swarm arroja una excepcion y con ello
             // validamos el estatus del nodo.
             if (result is null) return Result.Ok(false);
             
-            IsInSwarmMode = true;
             return Result.Ok(true);
         }
         catch (Exception e)
         {
+            _logger.LogError("[{Service}.{Method}]: {Error}", nameof(DockerService), nameof(BeginSwarmMode), e.Message);
             return Result.Fail(e.Message);
         }
     }
