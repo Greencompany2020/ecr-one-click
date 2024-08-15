@@ -91,7 +91,8 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-                <Button Text="Iniciar Servicios" Command="{Binding InitServicesCommand}" />
+                <Button Text="Iniciar Servicios"
+                        Clicked="OnInitServicesButtonClicked"/>
             </VerticalStackLayout>
         </Frame>
         
