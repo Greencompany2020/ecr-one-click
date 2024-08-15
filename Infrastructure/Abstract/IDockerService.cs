@@ -8,4 +8,6 @@ public interface IDockerService
     Task<Result<List<DockerServiceItem>>> GetContainers();
     Task<Result<List<DockerServiceItem>>> GetServices();
     Task<Result<bool>> BeginSwarmMode();
+    Task<Result> CreateTestService();
+    Task<Result> CreateTestContainer();
 }
