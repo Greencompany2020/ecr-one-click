@@ -36,4 +36,25 @@ public partial class ServicesPage : ContentPage
             await DisplayAlert("Error", LoggingUtils.FetchErrorsText(initServicesResult.Errors), "OK");
         }
     }
+
+    private async void OnFetchEnvButtonClicked(object? sender, EventArgs e)
+    {
+        var viewModel = (ServicesViewModel)BindingContext;
+
+        var secrets = await viewModel.FetchSecrets();
+
+        if (secrets.IsFailed)
+        {
+            await DisplayAlert("Error", LoggingUtils.FetchErrorsText(secrets.Errors), "OK");
+            return;
+        }
+
+        if (secrets.Value is null)
+        {
+            await DisplayAlert("Error", LoggingUtils.FetchErrorsText(secrets.Errors), "OK");
+            return;
+        }
+
+        await DisplayAlert("Secrets", secrets.Value.ToString(), "OK");
+    }
 }

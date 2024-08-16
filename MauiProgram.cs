@@ -33,6 +33,7 @@ public static class MauiProgram
                 rollingInterval: RollingInterval.Day
                 )
             .CreateLogger());
+        
         builder.LoadServices();
         builder.LoadViewModels();
         builder.LoadValidators();

@@ -33,6 +33,7 @@ public static class ServiceHelper
     public static MauiAppBuilder LoadServices(this MauiAppBuilder builder)
     {
         builder.Services.AddSingleton<IDockerService, DockerService>();
+        builder.Services.AddSingleton<IDopplerService, DopplerService>();
 
         return builder;
     }

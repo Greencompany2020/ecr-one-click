@@ -93,6 +93,9 @@
                 </CollectionView>
                 <Button Text="Iniciar Servicios"
                         Clicked="OnInitServicesButtonClicked"/>
+                <Button Text="Obtener variables de entorno"
+                        Clicked="OnFetchEnvButtonClicked"
+                        />
             </VerticalStackLayout>
         </Frame>
         
