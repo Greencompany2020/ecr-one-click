@@ -92,8 +92,4 @@
       <AdditionalFiles Include="Presentation\Views\MainPage.xaml" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Shared\" />
-    </ItemGroup>
-
 </Project>

@@ -32,7 +32,7 @@ public class SqliteSettingsRepository : ISettingsRepository
             DockerUser = settings.DockerUser,
             DockerPass = settings.DockerPass,
             DockerToken = settings.DockerToken,
-            DopplerToken = settings.DockerToken
+            DopplerToken = settings.DopplerToken
         };
         
         if (existingSettings is null)

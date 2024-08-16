@@ -4,6 +4,8 @@ using EcrOneClick.Infrastructure.Abstract;
 using EcrOneClick.Infrastructure.Database.Repositories;
 using EcrOneClick.Presentation.Abstract;
 using EcrOneClick.Presentation.ViewModels.Validators;
+using EcrOneClick.Shared.Encryption;
+using EcrOneClick.Shared.Encryption.Abstract;
 using EcrOneClick.UseCases;
 using EcrOneClick.UseCases.Abstract;
 using EcrOneClick.UseCases.Request;
@@ -34,6 +36,7 @@ public static class ServiceHelper
     {
         builder.Services.AddSingleton<IDockerService, DockerService>();
         builder.Services.AddSingleton<IDopplerService, DopplerService>();
+        builder.Services.AddSingleton<IEncryptionService, AesEncryptionService>();
 
         return builder;
     }
